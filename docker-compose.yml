@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  bot:
+    build: .
+    container_name: fell_again_botname
+    restart: "unless-stopped"
+    environment:
+      - BOT_TOKEN = ${BOT_TOKEN}
+      - CHANNEL_ID = ${CHANNEL_ID}
+    env_file:
+      - .env
+
+volumes:
+  volume:
