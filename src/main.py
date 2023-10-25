@@ -8,6 +8,8 @@ from src.database.models.ping_result import PingResult, PingResultDB
 from src.database.models.internet_down import InternetDown, InternetDownDB
 
 from datetime import datetime
+import pytz
+
 from pythonping import ping
 
 from src.messages import format_internet_down_message
@@ -20,7 +22,7 @@ async def main():
 
     while True:
         # Ping
-        ping_time = datetime.now()
+        ping_time = datetime.now(tz=pytz.timezone('Europe/Moscow'))
         response_list = ping(IP)
 
         # Save ping result into DB
