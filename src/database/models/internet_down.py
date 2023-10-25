@@ -52,6 +52,12 @@ class InternetDown(Document):
 
         return (await self.get_end_datetime()) - (await self.get_start_datetime())
 
+    def __str__(self):
+        return f"InternetDown #{self.id}\n"\
+               f"Is ended: {self.is_ended}\n"\
+               f"Start ping result id: {self.start_ping_result_id}\n"\
+               f"End ping result id: {self.end_ping_result_id}"
+
     class Settings:
         name = "internet_downs"
 
