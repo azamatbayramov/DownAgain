@@ -44,7 +44,7 @@ async def main():
             await current_internet_down.end(current_ping_result.id)
 
             # Send message about internet down
-            bot.send_message(CHANNEL_ID, format_internet_down_message(current_internet_down))
+            await bot.send_message(CHANNEL_ID, await format_internet_down_message(current_internet_down))
 
         sleep(PING_INTERVAL_IN_SEC)
 
