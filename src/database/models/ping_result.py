@@ -37,3 +37,13 @@ class PingResult(Document):
 
     class Settings:
         name = "ping_results"
+
+
+class PingResultDB:
+    @staticmethod
+    async def get_last_ping_result() -> PingResult:
+        return await PingResult.find_one()
+
+    @staticmethod
+    async def get_all_ping_results() -> list[PingResult]:
+        return await PingResult.find_all()
