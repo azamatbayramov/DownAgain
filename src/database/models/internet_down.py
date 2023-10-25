@@ -52,7 +52,7 @@ class InternetDown(Document):
 
         return (await self.get_end_datetime()) - (await self.get_start_datetime())
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"InternetDown #{self.id}\n"\
                f"Is ended: {self.is_ended}\n"\
                f"Start ping result id: {self.start_ping_result_id}\n"\
