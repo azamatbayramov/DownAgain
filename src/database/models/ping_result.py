@@ -19,21 +19,20 @@ class PingResult(Document):
 
     packet_loss: float
 
-    def fill(self, ip: str, datetime: datetime, response_list: ResponseList):
-        self.id = PingResult.count() + 1
+    @staticmethod
+    async def construct(ip: str, datetime: datetime, response_list: ResponseList):
+        ping_result = PingResult(
+            id=await PingResult.count() + 1,
+            ip=ip,
+            datetime=datetime,
+            success=response_list.success(),
+            rtt_min_ms=response_list.rtt_min_ms,
+            rtt_avg_ms=response_list.rtt_avg_ms,
+            rtt_max_ms=response_list.rtt_max_ms,
+            packet_loss=response_list.packet_loss
+        )
 
-        self.ip = ip
-        self.datetime = datetime
-
-        self.success = response_list.success()
-
-        self.rtt_min_ms = response_list.rtt_min_ms
-        self.rtt_avg_ms = response_list.rtt_avg_ms
-        self.rtt_max_ms = response_list.rtt_max_ms
-
-        self.packet_loss = response_list.packet_loss
-
-        return self
+        return ping_result
 
     def __str__(self) -> str:
         return f"Ping result #{self.id}:\n{self.ip}, {self.datetime}\n" \
