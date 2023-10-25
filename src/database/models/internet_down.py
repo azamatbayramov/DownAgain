@@ -50,7 +50,7 @@ class InternetDown(Document):
         if not self.is_ended:
             return None
 
-        return self.get_end_datetime - self.get_start_datetime
+        return self.get_end_datetime() - self.get_start_datetime()
 
     class Settings:
         name = "internet_downs"
