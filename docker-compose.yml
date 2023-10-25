@@ -3,7 +3,7 @@ version: "3.8"
 services:
   bot:
     build: .
-    container_name: fell_again_bot
+    container_name: down_again_bot
     restart: "unless-stopped"
     environment:
       - BOT_TOKEN = ${BOT_TOKEN}
@@ -16,7 +16,7 @@ services:
       - mongodb
 
   mongodb:
-    container_name: fell_again_mongodb
+    container_name: down_again_mongodb
     image: mongo:6-jammy
     networks:
       - db_network
