@@ -19,8 +19,9 @@ class PingResult(Document):
 
     packet_loss: float
 
-    @staticmethod
     def fill(self, ip: str, datetime: datetime, response_list: ResponseList):
+        self.id = PingResult.count() + 1
+
         self.ip = ip
         self.datetime = datetime
 
@@ -31,6 +32,8 @@ class PingResult(Document):
         self.rtt_max_ms = response_list.rtt_max_ms
 
         self.packet_loss = response_list.packet_loss
+
+        return self
 
     class Settings:
         name = "ping_results"
