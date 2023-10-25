@@ -3,7 +3,7 @@ from beanie import Document
 from datetime import datetime
 from pytz import timezone
 
-from src.config import TIMEZONE_NAME
+from src.config import TIMEZONE
 
 from pythonping.executor import ResponseList
 
@@ -39,7 +39,7 @@ class PingResult(Document):
 
     @property
     def datetime(self) -> datetime:
-        return self.datetime_utc.astimezone(timezone(TIMEZONE_NAME))
+        return self.datetime_utc.astimezone(timezone(TIMEZONE))
 
     def __str__(self) -> str:
         return f"Ping result #{self.id}:\n{self.ip}, {self.datetime}\n" \
