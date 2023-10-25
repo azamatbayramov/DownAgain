@@ -1,7 +1,6 @@
 from time import sleep
 from aiogram import Bot
 from datetime import datetime
-from pytz import timezone
 import asyncio
 from pythonping import ping
 import logging
@@ -27,7 +26,7 @@ async def main():
         logging.info("----------------------------------")
         # Ping
         logging.info(f"Pinging {IP}...")
-        ping_time = datetime.now(tz=timezone('Europe/Moscow'))
+        ping_time = datetime.now()
         response_list = ping(IP, verbose=True)
 
         # Save ping result into DB
