@@ -8,20 +8,16 @@ services:
     environment:
       - BOT_TOKEN = ${BOT_TOKEN}
       - CHANNEL_ID = ${CHANNEL_ID}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_USERNAME}
     networks:
       - db_network
     env_file:
       - .env
+    depends_on:
+      - mongodb
 
   mongodb:
     container_name: fell_again_mongodb
     image: mongo:6-jammy
-    environment:
-      - MONGO_INITDB_DATABASE=FellAgain
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_USERNAME}
     networks:
       - db_network
     volumes:
