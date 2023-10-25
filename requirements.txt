@@ -1,5 +1,5 @@
-pythonping
-aiogram
-motor
-beanie
-pytz
+aiogram==3.1.1
+beanie==1.22.5
+motor==3.3.1
+pythonping==1.1.4
+pytz==2023.3
