@@ -1,2 +1,4 @@
 pythonping
 aiogram
+motor
+beanie
