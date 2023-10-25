@@ -1,18 +1,16 @@
 from time import sleep
 from aiogram import Bot
+from datetime import datetime
+from pytz import timezone
 import asyncio
+from pythonping import ping
+import logging
+
 from src.config import BOT_TOKEN, CHANNEL_ID, IP, PING_INTERVAL_IN_SEC
 
 from src.database.db import init_db
 from src.database.models.ping_result import PingResult, PingResultDB
 from src.database.models.internet_down import InternetDown, InternetDownDB
-
-from datetime import datetime
-import pytz
-
-from pythonping import ping
-
-import logging
 
 from src.messages import format_internet_down_message
 
@@ -29,7 +27,7 @@ async def main():
         logging.info("----------------------------------")
         # Ping
         logging.info(f"Pinging {IP}...")
-        ping_time = datetime.now(tz=pytz.timezone('Europe/Moscow'))
+        ping_time = datetime.now(tz=timezone('Europe/Moscow'))
         response_list = ping(IP, verbose=True)
 
         # Save ping result into DB
