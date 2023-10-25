@@ -15,7 +15,7 @@ bot = Bot(BOT_TOKEN)
 
 
 async def main():
-    init_db()
+    await init_db()
 
     while True:
         await ping_and_save()
