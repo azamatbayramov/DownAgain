@@ -46,7 +46,7 @@ class PingResult(Document):
 class PingResultDB:
     @staticmethod
     async def get_last_ping_result() -> PingResult:
-        return await PingResult.find_one({"id": await PingResult.count()})
+        return await PingResult.find_one({"_id": await PingResult.count()})
 
     @staticmethod
     async def get_all_ping_results() -> list[PingResult]:
