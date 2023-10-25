@@ -10,7 +10,7 @@ from src.database.models.internet_down import InternetDown, InternetDownDB
 from datetime import datetime
 from pythonping import ping
 
-from messages import format_internet_down_message
+from src.messages import format_internet_down_message
 
 bot = Bot(BOT_TOKEN)
 
@@ -20,7 +20,7 @@ async def main():
 
     while True:
         # Ping
-        ping_time = datetime.datetime.now()
+        ping_time = datetime.now()
         response_list = ping(IP)
 
         # Save ping result into DB
