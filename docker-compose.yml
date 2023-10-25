@@ -3,13 +3,30 @@ version: "3.8"
 services:
   bot:
     build: .
-    container_name: fell_again_botname
+    container_name: fell_again_bot
     restart: "unless-stopped"
     environment:
       - BOT_TOKEN = ${BOT_TOKEN}
       - CHANNEL_ID = ${CHANNEL_ID}
+    networks:
+      - db_network
     env_file:
       - .env
+
+  mongodb:
+    container_name: fell_again_mongodb
+    image: mongo:6-jammy
+    environment:
+      - MONGO_INITDB_DATABASE=FellAgain
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_USERNAME}
+    networks:
+      - db_network
+    volumes:
+      - db_data:/data/db
+    env_file:
+      - .env
+
 
 volumes:
   volume:
