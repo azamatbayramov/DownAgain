@@ -35,6 +35,11 @@ class PingResult(Document):
 
         return self
 
+    def __str__(self) -> str:
+        return f"Ping result #{self.id}:\n{self.ip}, {self.datetime}\n" \
+               f"RTT min/avg/max: {self.rtt_min_ms}/{self.rtt_avg_ms}/{self.rtt_max_ms}\n" \
+               f"Success: {self.success}, packet loss: {self.packet_loss}\n"
+
     class Settings:
         name = "ping_results"
 
