@@ -39,7 +39,7 @@ class PingResult(Document):
 
     @property
     def datetime(self) -> datetime:
-        return self.datetime.astimezone(timezone(TIMEZONE_NAME))
+        return self._datetime.astimezone(timezone(TIMEZONE_NAME))
 
     def __str__(self) -> str:
         return f"Ping result #{self.id}:\n{self.ip}, {self.datetime}\n" \
