@@ -8,6 +8,8 @@ services:
     environment:
       - BOT_TOKEN = ${BOT_TOKEN}
       - CHANNEL_ID = ${CHANNEL_ID}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_USERNAME}
     networks:
       - db_network
     env_file:
@@ -29,4 +31,8 @@ services:
 
 
 volumes:
-  volume:
+  db_data:
+
+networks:
+  db_network:
+    driver: bridge
