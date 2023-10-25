@@ -28,12 +28,14 @@ services:
       - .env
   
   mongo_express:
-    image: mongo-express:latest
+    image: mongo-express:1.0.0
     container_name: down_again_mongo_express
     restart: "unless-stopped"
     environment:
       - ME_CONFIG_BASICAUTH_USERNAME = ${ME_CONFIG_BASICAUTH_USERNAME}
       - ME_CONFIG_BASICAUTH_PASSWORD = ${ME_CONFIG_BASICAUTH_PASSWORD}
+      - ME_CONFIG_OPTIONS_READONLY: true
+      - ME_CONFIG_DOCUMENTS_PER_PAGE: 100
     networks:
       - db_network
     ports:
