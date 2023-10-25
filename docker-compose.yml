@@ -28,7 +28,7 @@ services:
       - .env
   
   mongo_express:
-    image: mongo-express:1.0.0
+    image: mongo-express:latest
     container_name: down_again_mongo_express
     restart: "unless-stopped"
     environment:
