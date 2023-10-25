@@ -1,8 +1,7 @@
 from beanie import Document
+from datetime import datetime, timedelta
 
 from src.database.models.ping_result import PingResult
-
-from datetime import datetime, timedelta
 
 
 class InternetDown(Document):

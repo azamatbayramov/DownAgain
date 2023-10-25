@@ -1,11 +1,9 @@
 from beanie import Document
-
 from datetime import datetime
 from pytz import timezone
+from pythonping.executor import ResponseList
 
 from src.config import TIMEZONE
-
-from pythonping.executor import ResponseList
 
 
 class PingResult(Document):
