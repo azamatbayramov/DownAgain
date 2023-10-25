@@ -7,6 +7,8 @@ class PingResult(Document):
     ip: str
     datetime: datetime
 
+    success: bool
+
     rtt_min_ms: float
     rtt_avg_ms: float
     rtt_max_ms: float
