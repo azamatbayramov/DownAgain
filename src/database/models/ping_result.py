@@ -12,7 +12,7 @@ class PingResult(Document):
     id: int
 
     ip: str
-    _datetime: datetime
+    datetime_utc: datetime
 
     success: bool
 
@@ -27,7 +27,7 @@ class PingResult(Document):
         ping_result = PingResult(
             id=await PingResult.count() + 1,
             ip=ip,
-            _datetime=datetime,
+            datetime_utc=datetime,
             success=response_list.success(),
             rtt_min_ms=response_list.rtt_min_ms,
             rtt_avg_ms=response_list.rtt_avg_ms,
@@ -39,7 +39,7 @@ class PingResult(Document):
 
     @property
     def datetime(self) -> datetime:
-        return self._datetime.astimezone(timezone(TIMEZONE_NAME))
+        return self.datetime_utc.astimezone(timezone(TIMEZONE_NAME))
 
     def __str__(self) -> str:
         return f"Ping result #{self.id}:\n{self.ip}, {self.datetime}\n" \
