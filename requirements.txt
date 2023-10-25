@@ -2,3 +2,4 @@ pythonping
 aiogram
 motor
 beanie
+pytz
