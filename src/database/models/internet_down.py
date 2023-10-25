@@ -1,5 +1,9 @@
 from beanie import Document
 
+from src.database.models.ping_result import PingResult
+
+from datetime import datetime, timedelta
+
 
 class InternetDown(Document):
     id: int
@@ -23,6 +27,30 @@ class InternetDown(Document):
         self.end_ping_result_id = end_ping_result_id
 
         await self.save()
+
+    async def get_start_ping_result(self) -> PingResult:
+        return await PingResult.find_one({"_id": self.start_ping_result_id})
+
+    async def get_end_ping_result(self) -> PingResult | None:
+        if self.end_ping_result_id is None:
+            return None
+
+        return await PingResult.find_one({"_id": self.end_ping_result_id})
+
+    async def get_start_datetime(self) -> datetime:
+        return (await self.get_start_ping_result()).datetime
+
+    async def get_end_datetime(self) -> datetime | None:
+        if self.end_ping_result_id is None:
+            return None
+
+        return (await self.get_end_ping_result()).datetime
+
+    async def get_duration(self) -> timedelta | None:
+        if not self.is_ended:
+            return None
+
+        return self.get_end_datetime - self.get_start_datetime
 
     class Settings:
         name = "internet_downs"
