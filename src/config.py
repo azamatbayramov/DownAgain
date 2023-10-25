@@ -9,4 +9,4 @@ PING_INTERVAL_IN_SEC = 10
 
 MONGO_URL = "mongodb://mongodb:27017"
 
-TIMEZONE = get_localzone_name()
+TIMEZONE_NAME = get_localzone_name()

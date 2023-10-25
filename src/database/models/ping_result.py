@@ -1,6 +1,9 @@
 from beanie import Document
 
 from datetime import datetime
+from pytz import timezone
+
+from src.config import TIMEZONE_NAME
 
 from pythonping.executor import ResponseList
 
@@ -9,7 +12,7 @@ class PingResult(Document):
     id: int
 
     ip: str
-    datetime: datetime
+    _datetime: datetime
 
     success: bool
 
@@ -24,7 +27,7 @@ class PingResult(Document):
         ping_result = PingResult(
             id=await PingResult.count() + 1,
             ip=ip,
-            datetime=datetime,
+            _datetime=datetime,
             success=response_list.success(),
             rtt_min_ms=response_list.rtt_min_ms,
             rtt_avg_ms=response_list.rtt_avg_ms,
@@ -33,6 +36,10 @@ class PingResult(Document):
         )
 
         return ping_result
+
+    @property
+    def datetime(self) -> datetime:
+        return self.datetime.astimezone(timezone(TIMEZONE_NAME))
 
     def __str__(self) -> str:
         return f"Ping result #{self.id}:\n{self.ip}, {self.datetime}\n" \
